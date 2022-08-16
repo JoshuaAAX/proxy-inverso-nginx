@@ -3,8 +3,8 @@
 #https://www.redeszone.net/tutoriales/servidores/vagrant-instalacion-configuracion-ejemplos/
 #Integrantes:
 #Joshua Sebastian Chicame Muñoz-2074121
-#Damian Alessandro Espinosa Espinosa - 
-#Adolfo Leon Maya Garcia -
+#Damian Alessandro Espinosa Espinosa -  2028180 
+#Adolfo Leon Maya Garcia - 2025159
 
 Vagrant.configure("2") do |config|
 
@@ -12,8 +12,9 @@ Vagrant.configure("2") do |config|
         config.vm.define "nginx" do |nginx|
 		nginx.vm.box = "hashicorp/bionic64"
 		nginx.vm.network "private_network", ip: "192.168.28.30"
-                nginx.vm.provision "shell", inline: <<-SHELL
-
+                #comandos shell que son necesarios para la máquina de nginx
+		nginx.vm.provision "shell", inline: <<-SHELL
+             
                 sudo apt-get update
                 sudo apt-get install nginx -y
                 sudo systemctl status ngix
@@ -25,6 +26,7 @@ Vagrant.configure("2") do |config|
        config.vm.define "apache" do |apache|
 		apache.vm.box = "hashicorp/bionic64"
 		apache.vm.network "private_network", ip: "192.168.28.32"
+	        #comandos shell que son necesarios para la máquina de apache
                 apache.vm.provision "shell", inline: <<-SHELL
 
                 sudo apt-get update
@@ -36,6 +38,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define "compose" do |compose|
 		compose.vm.box = "hashicorp/bionic64"
 		compose.vm.network "private_network", ip: "192.168.28.31"
+		#comandos shell que son necesarios para la máquina compose
                 compose.vm.provision "shell", inline: <<-SHELL
 
                 sudo apt-get update
